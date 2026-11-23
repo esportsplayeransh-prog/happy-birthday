@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>For You, My Love — Happy Birthday</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cormorant Garamond (romantic editorial serif) & Plus Jakarta Sans (clean warm sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-deep: #0f0c15;
+      --bg-card: rgba(28, 22, 38, 0.72);
+      --gold-soft: #f3d59b;
+      --gold-glow: rgba(243, 213, 155, 0.35);
+      --rose-warm: #e8a598;
+      --cream-text: #f7f2eb;
+      --muted-text: #c7bdb5;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #08060c;
+      color: var(--cream-text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .font-serif-romantic {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    /* iPhone 13 Pro Max Frame Container (428px width) */
+    .phone-viewport {
+      width: 100%;
+      max-width: 428px;
+      min-height: 100vh;
+      margin: 0 auto;
+      position: relative;
+      background: radial-gradient(circle at 50% 0%, #241934 0%, #130e1c 45%, #0b0811 100%);
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.85), 0 0 1px rgba(243, 213, 155, 0.25);
+      overflow-x: hidden;
+    }
+
+    @media (min-width: 460px) {
+      body {
+        padding: 20px 0;
+        background: radial-gradient(circle at center, #181224 0%, #060409 100%);
+      }
+      .phone-viewport {
+        border-radius: 44px;
+        border: 1px solid rgba(243, 213, 155, 0.18);
+        min-height: 926px; /* iPhone 13 Pro Max height */
+      }
+    }
+
+    /* Ambient Firefly / Starlight Canvas */
+    #starlight-canvas {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 428px;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Glassmorphic Warm Cards */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(243, 213, 155, 0.16);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Special Tribute Halo for Grandma */
+    .grandma-halo {
+      border: 1.5px solid rgba(243, 213, 155, 0.55);
+      box-shadow: 0 0 28px rgba(243, 213, 155, 0.22), inset 0 0 20px rgba(243, 213, 155, 0.08);
+    }
+
+    /* Polaroid Frame Styling */
+    .polaroid-frame {
+      background: linear-gradient(145deg, #fdfbf7 0%, #f3ece1 100%);
+      color: #2c221e;
+      padding: 12px 12px 20px 12px;
+      border-radius: 16px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .polaroid-frame:active {
+      transform: scale(0.985);
+    }
+
+    /* Gentle Floating Animation */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+    .animate-float {
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+
+    /* Pulse Glow for Candle & Heart */
+    @keyframes candleFlicker {
+      0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
+      35% { transform: scale(1.06, 0.96) rotate(1.5deg); opacity: 1; }
+      70% { transform: scale(0.97, 1.04) rotate(-1deg); opacity: 0.9; }
+    }
+    .candle-flame {
+      transform-origin: bottom center;
+      animation: candleFlicker 2.8s ease-in-out infinite;
+    }
+
+    /* Dashed Flight Path Animation */
+    @keyframes dashFlow {
+      to { stroke-dashoffset: -24; }
+    }
+    .flight-path {
+      stroke-dasharray: 6 6;
+      animation: dashFlow 1.8s linear infinite;
+    }
+
+    /* Fade-in Scroll Reveal */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.85s ease-out, transform 0.85s ease-out;
+    }
+    .reveal-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Typewriter Cursor */
+    .typing-cursor::after {
+      content: '|';
+      color: var(--gold-soft);
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* Custom Scrollbar inside modal */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(243, 213, 155, 0.25);
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main iPhone 13 Pro Max Container -->
+  <div class="phone-viewport" id="app-container">
+    
+    <!-- Ambient Floating Fireflies & Stars Canvas -->
+    <canvas id="starlight-canvas"></canvas>
+
+    <!-- =====================================================================
+         1. GENTLE ENVELOPE / STARLIGHT INTRO OVERLAY
+         ===================================================================== -->
+    <div id="intro-overlay" class="fixed inset-0 z-50 flex items-center justify-center p-6 transition-opacity duration-1000"
+         style="background: radial-gradient(circle at 50% 35%, #261a38 0%, #0d0914 85%); max-width: 428px; margin: 0 auto;">
+      <div class="text-center max-w-xs mx-auto space-y-6">
+        <!-- Glowing Star Emblem -->
+        <div class="w-20 h-20 mx-auto rounded-full flex items-center justify-center animate-float"
+             style="background: radial-gradient(circle, rgba(243,213,155,0.22) 0%, rgba(243,213,155,0.03) 70%); border: 1px solid rgba(243,213,155,0.35);">
+          <svg class="w-9 h-9 text-[#f3d59b]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L14.4 9.1L22 9.5L16 14.3L18.1 21.7L12 17.3L5.9 21.7L8 14.3L2 9.5L9.6 9.1L12 2Z" />
+          </svg>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-xs uppercase tracking-[0.25em] text-[#e8a598]">A Quiet Little Space For You</p>
+          <h1 class="font-serif-romantic text-4xl font-semibold text-[#f7f2eb] leading-tight">
+            Happy Birthday,<br><span id="intro-her-name" class="italic text-[#f3d59b]">My Love</span>
+          </h1>
+          <p class="text-sm text-[#c7bdb5] leading-relaxed pt-2">
+          today on your 18th birthday just a gentle reminder of how deeply you are loved, today and always.
+          </p>
+        </div>
+
+        <div class="pt-3 space-y-3">
+          <button id="open-experience-btn"
+                  class="w-full py-4 px-6 rounded-full font-medium text-sm tracking-wide text-[#130e1c] transition-all duration-300 shadow-lg active:scale-95"
+                  style="background: linear-gradient(135deg, #f6dfb0 0%, #e5b879 100%); box-shadow: 0 8px 25px rgba(243, 213, 155, 0.3);">
+            Tap to Open Your Gift ✨
+          </button>
+          <p class="text-[11px] text-[#9c9189]">
+            Includes gentle ambient music (tap to begin)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- =====================================================================
+         TOP FLOATING CONTROLS (Music Toggle & Subtle Personalize Button)
+         ===================================================================== -->
+    <header class="sticky top-0 z-30 flex items-center justify-between px-5 py-3.5 backdrop-blur-md bg-[#0f0c15]/60 border-b border-[#f3d59b]/10">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#f3d59b] animate-pulse"></span>
+        <span class="font-serif-romantic italic text-lg text-[#f3d59b]" id="header-title">For My Love</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- Ambient Piano/Chime Audio Toggle -->
+        <button id="music-toggle-btn" aria-label="Toggle Gentle Music"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs border border-[#f3d59b]/25 bg-[#1c1626]/80 text-[#f3d59b] active:scale-95 transition">
+          <span id="music-icon">♪</span>
+          <span id="music-label">Soft Melody</span>
+        </button>
+
+        <!-- Quick Customize / Photo Test Drawer Button -->
+        <button id="open-editor-btn" aria-label="Customize Photos & Text" title="Customize Photos & Text"
+                class="p-2 rounded-full border border-[#f3d59b]/20 bg-[#1c1626]/80 text-[#c7bdb5] hover:text-[#f3d59b] active:scale-95 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- =====================================================================
+         MAIN CONTENT FLOW (Portrait Optimized for iPhone 13 Pro Max)
+         ===================================================================== -->
+    <main class="relative z-10 px-5 pt-6 pb-20 space-y-12">
+
+      <!-- SECTION 1: WARM HERO GREETING -->
+      <section class="text-center space-y-4 pt-2 reveal-section visible">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] tracking-widest uppercase border border-[#e8a598]/30 bg-[#e8a598]/10 text-[#e8a598]">
+          <span>Celebrating You Gently</span>
+        </div>
+
+        <h2 class="font-serif-romantic text-[40px] leading-[1.12] font-semibold text-[#f7f2eb]">
+          To the bravest,<br>
+          <span class="italic text-[#f3d59b]">softest heart</span> I know.
+        </h2>
+
+        <p class="text-sm text-[#c7bdb5] leading-relaxed max-w-[340px] mx-auto">
+          I know your heart feels heavy right now, and being miles away from home makes today feel bittersweet. You don’t have to pretend to be okay—just let me hold your heart today.
+        </p>
+      </section>
+
+      <!-- SECTION 2: ANIMATED TYPEWRITER LOVE LETTER -->
+      <section class="glass-card rounded-3xl p-6 space-y-4 reveal-section">
+        <div class="flex items-center justify-between border-b border-[#f3d59b]/15 pb-3">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-[#e8a598]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span class="font-serif-romantic italic text-xl text-[#f3d59b]">A Letter For Your Birthday</span>
+          </div>
+          <button id="skip-typing-btn" class="text-[11px] text-[#c7bdb5] underline underline-offset-4 hover:text-[#f3d59b]">
+            Read all
+          </button>
+        </div>
+
+        <!-- Animated Typewriter Container -->
+        <div id="love-letter-box" class="space-y-3.5 text-[14.5px] leading-[1.75] text-[#f3ece4] min-h-[230px]">
+          <!-- Paragraphs injected by JS -->
+        </div>
+
+        <div class="pt-2 flex items-center justify-between text-xs text-[#e8a598] font-serif-romantic italic">
+          <span>Always in your corner,</span>
+          <span id="letter-signature" class="text-base text-[#f3d59b]">Forever Yours ♥</span>
+        </div>
+      </section>
+
+      <!-- SECTION 3: DOMINICAN REPUBLIC TO LONDON CONNECTION BRIDGE -->
+      <section class="glass-card rounded-3xl p-6 space-y-5 reveal-section">
+        <div class="text-center space-y-1">
+          <p class="text-[11px] uppercase tracking-[0.2em] text-[#f3d59b]">4,300 Miles • One Heart</p>
+          <h3 class="font-serif-romantic text-2xl text-[#f7f2eb]">From Home to Your New Chapter</h3>
+        </div>
+
+        <!-- Animated Flight / Heart Bridge SVG -->
+        <div class="relative py-3 px-2">
+          <div class="flex items-center justify-between text-xs font-medium">
+            <div class="text-center space-y-1">
+              <div class="w-11 h-11 mx-auto rounded-full bg-[#e8a598]/15 border border-[#e8a598]/40 flex items-center justify-center text-lg">
+                🌴
+              </div>
+              <p class="text-[#f7f2eb] font-semibold">Dominican Rep.</p>
+              <p class="text-[10px] text-[#c7bdb5]">Akira & Warm Memories</p>
+            </div>
+
+            <!-- Glowing Animated Arc -->
+            <div class="flex-1 px-2 -mt-5">
+              <svg class="w-full h-14 overflow-visible" viewBox="0 0 140 50">
+                <path d="M 5 40 Q 70 -5 135 40" fill="none" stroke="rgba(243,213,155,0.2)" stroke-width="2" />
+                <path d="M 5 40 Q 70 -5 135 40" fill="none" stroke="#f3d59b" stroke-width="2" class="flight-path" />
+                <!-- Heart in the middle -->
+                <g transform="translate(62, 8)">
+                  <circle cx="8" cy="8" r="11" fill="rgba(232,165,152,0.2)" />
+                  <path d="M8 13.5l-1-.9C3.4 9.4 1 7.2 1 4.5 1 2.4 2.6.8 4.7.8c1.2 0 2.3.6 3.3 1.5C9 1.4 10.1.8 11.3.8 13.4.8 15 2.4 15 4.5c0 2.7-2.4 4.9-6 8.1l-1 .9z" fill="#e8a598"/>
+                </g>
+              </svg>
+            </div>
+
+            <div class="text-center space-y-1">
+              <div class="w-11 h-11 mx-auto rounded-full bg-[#f3d59b]/15 border border-[#f3d59b]/40 flex items-center justify-center text-lg">
+                🇬🇧
+              </div>
+              <p class="text-[#f7f2eb] font-semibold">London</p>
+              <p class="text-[10px] text-[#c7bdb5]">2 Months Strong</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-center text-[#c7bdb5] leading-relaxed">
+          Moving across the ocean takes incredible courage. Even in a brand-new city, you carry every bit of warmth from home—and you never walk alone here.
+        </p>
+      </section>
+
+      <!-- =====================================================================
+           SECTION 4: 5-MEMORY SCRAPBOOK GALLERY
+           =====================================================================
+           HOW TO ADD YOUR 5 PHOTOS FOR GITHUB PAGES:
+           Place your 5 photos in the SAME folder as this index.html file and
+           name them exactly:
+             1. her-photo.jpg      (Her photo)
+             2. childhood.jpg      (Her childhood photo)
+             3. grandma.jpg        (Her with her grandma)
+             4. akira.jpg          (Her dog Akira in DR)
+             5. us-kissing.jpg     (Photo of you kissing her)
+           ===================================================================== -->
+      <section class="space-y-6 reveal-section">
+        <div class="text-center space-y-1.5">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-[#e8a598]">Pieces of Your Story</p>
+          <h3 class="font-serif-romantic text-3xl text-[#f7f2eb]">Everything That Makes You, You</h3>
+          <p class="text-xs text-[#c7bdb5]">Tap any memory to hold it close</p>
+        </div>
+
+        <!-- MEMORY 1: HER PHOTO -->
+        <article class="polaroid-frame space-y-3">
+          <div class="relative aspect-[4/4.3] w-full overflow-hidden rounded-xl bg-[#241c2e]">
+            <img id="img-her" src="her.png.jpeg" alt="My Beautiful Girl"
+                 onerror="this.onerror=null; this.src='https://placehold.co/600x650/241c2e/f3d59b?text=Add+her-photo.jpg';"
+                 class="w-full h-full object-cover" />
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-medium bg-black/55 text-[#f3d59b] backdrop-blur-sm">
+              The Birthday Girl ✨
+            </span>
+          </div>
+          <div class="px-1 pt-1">
+            <h4 class="font-serif-romantic text-2xl font-bold text-[#23192d]">The Brightest Soul</h4>
+            <p id="cap-her" class="text-xs text-[#574b45] leading-relaxed mt-0.5">
+              Even on your quietest days, your kindness, your laugh, and the way you care for everyone around you make the world softer.
+            </p>
+          </div>
+        </article>
+
+        <!-- MEMORY 2: CHILDHOOD PHOTO -->
+        <article class="polaroid-frame space-y-3">
+          <div class="relative aspect-[4/4.2] w-full overflow-hidden rounded-xl bg-[#241c2e]">
+            <img id="img-childhood" src="childhood.jpeg" alt="Little You"
+                 onerror="this.onerror=null; this.src='https://placehold.co/600x630/2a2035/e8a598?text=Add+childhood.jpg';"
+                 class="w-full h-full object-cover" />
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-medium bg-black/55 text-[#f7f2eb] backdrop-blur-sm">
+              Where It Began 🌷
+            </span>
+          </div>
+          <div class="px-1 pt-1">
+            <h4 class="font-serif-romantic text-2xl font-bold text-[#23192d]">Little You Would Be So Proud</h4>
+            <p id="cap-childhood" class="text-xs text-[#574b45] leading-relaxed mt-0.5">
+              Look how far this sweet little girl has come—crossing oceans, chasing dreams in London, and growing into the most extraordinary woman.
+            </p>
+          </div>
+        </article>
+
+        <!-- MEMORY 3: HER & HER GRANDMA (SPECIAL GOLDEN HALO TRIBUTE CARD) -->
+        <article class="glass-card grandma-halo rounded-3xl p-4 space-y-3.5">
+          <div class="flex items-center justify-between px-1">
+            <span class="text-[11px] uppercase tracking-[0.18em] text-[#f3d59b] flex items-center gap-1.5">
+              <span>🕊️</span> Forever In Your Heart
+            </span>
+            <span class="text-[11px] text-[#c7bdb5] font-serif-romantic italic">Guardian Angel</span>
+          </div>
+
+          <div class="relative aspect-[4/4.3] w-full overflow-hidden rounded-2xl bg-[#1e1726]">
+            <img id="img-grandma" src="hergrandma.jpeg" alt="With Grandma"
+                 onerror="this.onerror=null; this.src='https://placehold.co/600x650/1e1726/f3d59b?text=Add+grandma.jpg';"
+                 class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0f0c15]/70 via-transparent to-transparent"></div>
+            <p class="absolute bottom-3 left-3 right-3 font-serif-romantic italic text-base text-[#f7f2eb]">
+              “Love like hers never leaves—it lives on in every beat of your heart.”
+            </p>
+          </div>
+
+          <div class="px-1 pb-1 space-y-1">
+            <h4 class="font-serif-romantic text-2xl text-[#f3d59b]">Always Watching Over You</h4>
+            <p id="cap-grandma" class="text-xs text-[#d6ccc4] leading-relaxed">
+              She loved you so deeply, and she is celebrating you from above today. Every gentle breeze and warm ray of light is her reminding you how proud she is of her granddaughter.
+            </p>
+          </div>
+        </article>
+
+        <!-- MEMORY 4: AKIRA (HER DOG IN DOMINICAN REPUBLIC) -->
+        <article class="polaroid-frame space-y-3">
+          <div class="relative aspect-[4/4.2] w-full overflow-hidden rounded-xl bg-[#241c2e]">
+            <video id="img-akira" src="herdog.mp4" alt="Akira in Dominican Republic"
+                 onerror="this.onerror=null; this.src='https://placehold.co/600x630/241c2e/f3d59b?text=Add+akira.jpg';"
+                 class="w-full h-full object-cover" />
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-medium bg-black/55 text-[#f3d59b] backdrop-blur-sm">
+              From DR With Love 🐾
+            </span>
+          </div>
+          <div class="px-1 pt-1">
+            <h4 class="font-serif-romantic text-2xl font-bold text-[#23192d]">Akira Sends Birthday Kisses!</h4>
+            <p id="cap-akira" class="text-xs text-[#574b45] leading-relaxed mt-0.5">
+              All the way from the Dominican Republic to London, Akira is wagging his tail for his favorite human—counting down the days until he gets to see you again.
+            </p>
+          </div>
+        </article>
+
+        <!-- MEMORY 5: US (THE KISS PHOTO) -->
+        <article class="polaroid-frame space-y-3" style="background: linear-gradient(145deg, #fff9f5 0%, #f6e4dc 100%);">
+          <div class="relative aspect-[4/4.4] w-full overflow-hidden rounded-xl bg-[#241c2e]">
+            <img id="img-us" src="herkissing.jpeg" alt="Us Together"
+                 onerror="this.onerror=null; this.src='https://placehold.co/600x660/2b1d2e/e8a598?text=Add+us-kissing.jpg';"
+                 class="w-full h-full object-cover" />
+            <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-medium bg-black/55 text-[#e8a598] backdrop-blur-sm">
+              My Favorite Place ♥
+            </span>
+          </div>
+          <div class="px-1 pt-1">
+            <h4 class="font-serif-romantic text-2xl font-bold text-[#23192d]">Right Here With You</h4>
+            <p id="cap-us" class="text-xs text-[#574b45] leading-relaxed mt-0.5">
+              Through the grief, the big move, and every quiet night—my hand is in yours. You never have to carry the weight of the world alone. I love you endlessly.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- =====================================================================
+           SECTION 5: INTERACTIVE QUIET BIRTHDAY WISH CANDLE
+           ===================================================================== -->
+      <section class="glass-card rounded-3xl p-7 text-center space-y-5 reveal-section">
+        <div class="space-y-1.5">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-[#f3d59b]">A Gentle Birthday Ritual</p>
+          <h3 class="font-serif-romantic text-3xl text-[#f7f2eb]">Make a Quiet Wish</h3>
+          <p class="text-xs text-[#c7bdb5] max-w-[290px] mx-auto leading-relaxed">
+            Close your eyes, think of Grandma’s warmth, Akira’s joy, and everything good waiting for you—then tap the candle.
+          </p>
+        </div>
+
+        <!-- Interactive Candle SVG -->
+        <div class="py-2 flex justify-center">
+          <button id="wish-candle-btn" aria-label="Tap to make a birthday wish"
+                  class="group relative w-32 h-36 rounded-full flex flex-col items-center justify-center focus:outline-none active:scale-95 transition">
+            <!-- Soft radial aura behind candle -->
+            <div id="candle-aura" class="absolute inset-0 rounded-full transition-all duration-700"
+                 style="background: radial-gradient(circle, rgba(243,213,155,0.28) 0%, rgba(243,213,155,0) 70%);"></div>
+            
+            <svg class="w-24 h-28 relative z-10" viewBox="0 0 100 120">
+              <!-- Warm Flame -->
+              <g id="flame-group" class="candle-flame">
+                <path d="M50 14 C58 28, 62 38, 50 48 C38 38, 42 28, 50 14 Z" fill="#f3d59b" />
+                <path d="M50 22 C54 31, 56 37, 50 44 C44 37, 46 31, 50 22 Z" fill="#ffffff" />
+              </g>
+              <!-- Wick -->
+              <line x1="50" y1="48" x2="50" y2="55" stroke="#8c7a6b" stroke-width="2" stroke-linecap="round" />
+              <!-- Candle Body -->
+              <rect x="36" y="55" width="28" height="48" rx="6" fill="url(#candleGrad)" />
+              <!-- Melted Wax Drip -->
+              <path d="M36 60 Q41 68 45 61 Q50 72 55 61 Q60 66 64 60" fill="none" stroke="#fff8ee" stroke-width="3" stroke-linecap="round" />
+              <!-- Holder Plate -->
+              <ellipse cx="50" cy="105" rx="26" ry="5" fill="#d4af7a" opacity="0.7" />
+              <defs>
+                <linearGradient id="candleGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#f7efe2" />
+                  <stop offset="50%" stop-color="#fffaf2" />
+                  <stop offset="100%" stop-color="#e3d2bc" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </button>
+        </div>
+
+        <div id="wish-feedback" class="min-h-[44px] flex items-center justify-center">
+          <span class="text-xs text-[#e8a598] font-medium">Tap the flame to send your wish into the stars ✨</span>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="text-center space-y-2 pt-4 pb-6 text-[#9c9189]">
+        <p class="font-serif-romantic italic text-lg text-[#f3d59b]">Happy Birthday, My Heart</p>
+        <p class="text-[11px]">Made with all my love • London & Santo Domingo</p>
+      </footer>
+    </main>
+
+    <!-- =====================================================================
+         CUSTOMIZE & LIVE PHOTO PREVIEW DRAWER (For You Before/During Gifting)
+         ===================================================================== -->
+    <div id="editor-modal" class="fixed inset-0 z-50 hidden items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+         style="max-width: 428px; margin: 0 auto;">
+      <div class="w-full max-h-[88vh] overflow-y-auto rounded-3xl bg-[#181222] border border-[#f3d59b]/30 p-5 space-y-5 text-left shadow-2xl">
+        <div class="flex items-center justify-between border-b border-[#f3d59b]/15 pb-3">
+          <div>
+            <h4 class="font-serif-romantic text-2xl text-[#f3d59b]">Personalize Keepsake</h4>
+            <p class="text-[11px] text-[#c7bdb5]">Test your 5 photos live or tweak names/message</p>
+          </div>
+          <button id="close-editor-btn" class="p-2 rounded-full bg-white/5 text-[#c7bdb5] hover:text-white">✕</button>
+        </div>
+
+        <!-- Names -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] text-[#c7bdb5] mb-1">Her Nickname</label>
+            <input id="input-her-name" type="text" value="My Love"
+                   class="w-full px-3 py-2 rounded-xl bg-black/40 border border-[#f3d59b]/20 text-xs text-white focus:outline-none focus:border-[#f3d59b]" />
+          </div>
+          <div>
+            <label class="block text-[11px] text-[#c7bdb5] mb-1">Your Sign-off</label>
+            <input id="input-your-name" type="text" value="Forever Yours ♥"
+                   class="w-full px-3 py-2 rounded-xl bg-black/40 border border-[#f3d59b]/20 text-xs text-white focus:outline-none focus:border-[#f3d59b]" />
+          </div>
+        </div>
+
+        <!-- Quick Photo File Pickers (Instant Preview on Phone/Laptop) -->
+        <div class="space-y-2.5">
+          <p class="text-xs font-medium text-[#f3d59b]">Preview Your 5 Photos Instantly:</p>
+          <div class="grid grid-cols-1 gap-2 text-xs">
+            <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer">
+              <span>1. Her Photo (<code class="text-[#f3d59b]">her-photo.jpg</code>)</span>
+              <input type="file" accept="image/*" data-target="img-her" class="photo-picker hidden" />
+              <span class="px-2.5 py-1 rounded-lg bg-[#f3d59b]/20 text-[#f3d59b] text-[11px]">Choose</span>
+            </label>
+            <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer">
+              <span>2. Childhood (<code class="text-[#f3d59b]">childhood.jpg</code>)</span>
+              <input type="file" accept="image/*" data-target="img-childhood" class="photo-picker hidden" />
+              <span class="px-2.5 py-1 rounded-lg bg-[#f3d59b]/20 text-[#f3d59b] text-[11px]">Choose</span>
+            </label>
+            <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer">
+              <span>3. Her & Grandma (<code class="text-[#f3d59b]">grandma.jpg</code>)</span>
+              <input type="file" accept="image/*" data-target="img-grandma" class="photo-picker hidden" />
+              <span class="px-2.5 py-1 rounded-lg bg-[#f3d59b]/20 text-[#f3d59b] text-[11px]">Choose</span>
+            </label>
+            <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer">
+              <span>4. Dog Akira (<code class="text-[#f3d59b]">akira.jpg</code>)</span>
+              <input type="file" accept="image/*" data-target="img-akira" class="photo-picker hidden" />
+              <span class="px-2.5 py-1 rounded-lg bg-[#f3d59b]/20 text-[#f3d59b] text-[11px]">Choose</span>
+            </label>
+            <label class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/10 cursor-pointer">
+              <span>5. Us Kissing (<code class="text-[#f3d59b]">us-kissing.jpg</code>)</span>
+              <input type="file" accept="image/*" data-target="img-us" class="photo-picker hidden" />
+              <span class="px-2.5 py-1 rounded-lg bg-[#f3d59b]/20 text-[#f3d59b] text-[11px]">Choose</span>
+            </label>
+          </div>
+          <p class="text-[10px] text-[#9c9189] leading-relaxed">
+            Tip for GitHub Pages: Upload this <code class="text-[#f3d59b]">index.html</code> alongside your 5 images named exactly as shown above into your GitHub repository!
+          </p>
+        </div>
+
+        <!-- Custom Love Letter Textarea -->
+        <div>
+          <label class="block text-[11px] text-[#c7bdb5] mb-1">Edit Love Letter (Separate paragraphs with a blank line)</label>
+          <textarea id="input-letter-text" rows="5"
+                    class="w-full p-3 rounded-xl bg-black/40 border border-[#f3d59b]/20 text-xs text-white leading-relaxed focus:outline-none focus:border-[#f3d59b]"></textarea>
+        </div>
+
+        <button id="save-editor-btn"
+                class="w-full py-3 rounded-full font-medium text-xs text-[#130e1c]"
+                style="background: linear-gradient(135deg, #f6dfb0 0%, #e5b879 100%);">
+          Apply Changes ✨
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =====================================================================
+       JAVASCRIPT: AMBIENT STARLIGHT, SOFT PIANO SYNTH, TYPEWRITER & WISHES
+       ===================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* -------------------------------------------------------------------
+         1. DEFAULT HEARTFELT BIRTHDAY MESSAGE (Editable in code or modal)
+         ------------------------------------------------------------------- */
+      let letterParagraphs = [
+        "Happy birthday, my love. I know today feels different, and I know you didn’t feel like celebrating while your heart is still missing your grandma.",
+        "You don’t have to force a smile today. Grief is simply all the love we still carry, and the love between you and your grandma is something time and distance can never touch. I know she is smiling down on you today, so proud of the woman you are.",
+        "Leaving home in the Dominican Republic—and leaving sweet Akira behind—to start a new chapter in London just two months ago took more strength than most people could ever imagine.",
+        "So today isn’t about a loud party. It’s just my way of wrapping my arms around you, reminding you how deeply cherished you are, and thanking the universe for the day you were born."
+      ];
+
+      const letterBox = document.getElementById('love-letter-box');
+      const skipBtn = document.getElementById('skip-typing-btn');
+      let typingTimeout = null;
+      let isTypingDone = false;
+
+      function renderFullLetter() {
+        clearTimeout(typingTimeout);
+        isTypingDone = true;
+        letterBox.innerHTML = '';
+        letterParagraphs.forEach(text => {
+          const p = document.createElement('p');
+          p.textContent = text;
+          p.className = 'opacity-100 transition-opacity duration-500';
+          letterBox.appendChild(p);
+        });
+        skipBtn.style.display = 'none';
+      }
+
+      function startTypewriterLetter() {
+        clearTimeout(typingTimeout);
+        isTypingDone = false;
+        skipBtn.style.display = 'inline';
+        letterBox.innerHTML = '';
+
+        let pIndex = 0;
+        let charIndex = 0;
+        let currentP = document.createElement('p');
+        currentP.className = 'typing-cursor';
+        letterBox.appendChild(currentP);
+
+        function typeNextChar() {
+          if (isTypingDone) return;
+          if (pIndex >= letterParagraphs.length) {
+            currentP.classList.remove('typing-cursor');
+            isTypingDone = true;
+            skipBtn.style.display = 'none';
+            return;
+          }
+
+          const currentText = letterParagraphs[pIndex];
+          if (charIndex < currentText.length) {
+            currentP.textContent += currentText.charAt(charIndex);
+            charIndex++;
+            const delay = currentText.charAt(charIndex - 1) === '.' ? 260 : 24;
+            typingTimeout = setTimeout(typeNextChar, delay);
+          } else {
+            currentP.classList.remove('typing-cursor');
+            pIndex++;
+            charIndex = 0;
+            if (pIndex < letterParagraphs.length) {
+              currentP = document.createElement('p');
+              currentP.className = 'typing-cursor';
+              letterBox.appendChild(currentP);
+              typingTimeout = setTimeout(typeNextChar, 420);
+            } else {
+              isTypingDone = true;
+              skipBtn.style.display = 'none';
+            }
+          }
+        }
+        typeNextChar();
+      }
+
+      skipBtn.addEventListener('click', renderFullLetter);
+
+      /* -------------------------------------------------------------------
+         2. GENTLE AMBIENT MUSIC BOX SYNTHESIZER (Zero External MP3s Needed!)
+         ------------------------------------------------------------------- */
+      let audioCtx = null;
+      let isPlayingMusic = false;
+      let melodyInterval = null;
+      const musicBtn = document.getElementById('music-toggle-btn');
+      const musicLabel = document.getElementById('music-label');
+
+      // Gentle warm pentatonic/lullaby frequencies (Hz)
+      const lullabyNotes = [
+        261.63, 329.63, 392.00, 493.88, 523.25, 493.88, 392.00, 329.63,
+        220.00, 261.63, 329.63, 392.00, 440.00, 392.00, 329.63, 261.63,
+        174.61, 220.00, 261.63, 349.23, 392.00, 349.23, 261.63, 220.00,
+        196.00, 246.94, 293.66, 392.00, 440.00, 392.00, 293.66, 246.94
+      ];
+      let noteStep = 0;
+
+      function playSoftChimeNote(freq) {
+        if (!audioCtx || !isPlayingMusic) return;
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.045, now + 0.12);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.4);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        osc.stop(now + 2.5);
+      }
+
+      function startSoftMelody() {
+        try {
+          if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          }
+          if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+          }
+          isPlayingMusic = true;
+          musicLabel.textContent = 'Playing';
+          musicBtn.classList.add('border-[#f3d59b]');
+
+          if (!melodyInterval) {
+            playSoftChimeNote(lullabyNotes[noteStep % lullabyNotes.length]);
+            noteStep++;
+            melodyInterval = setInterval(() => {
+              if (isPlayingMusic) {
+                playSoftChimeNote(lullabyNotes[noteStep % lullabyNotes.length]);
+                noteStep++;
+              }
+            }, 950);
+          }
+        } catch (e) {
+          console.log('Audio start blocked until interaction');
+        }
+      }
+
+      function stopSoftMelody() {
+        isPlayingMusic = false;
+        musicLabel.textContent = 'Paused';
+        musicBtn.classList.remove('border-[#f3d59b]');
+      }
+
+      musicBtn.addEventListener('click', () => {
+        if (isPlayingMusic) {
+          stopSoftMelody();
+        } else {
+          startSoftMelody();
+        }
+      });
+
+      /* -------------------------------------------------------------------
+         3. INTRO OVERLAY OPENING & SCROLL REVEAL
+         ------------------------------------------------------------------- */
+      const introOverlay = document.getElementById('intro-overlay');
+      const openBtn = document.getElementById('open-experience-btn');
+
+      openBtn.addEventListener('click', () => {
+        startSoftMelody();
+        introOverlay.style.opacity = '0';
+        setTimeout(() => {
+          introOverlay.style.display = 'none';
+          startTypewriterLetter();
+        }, 900);
+      });
+
+      // Intersection Observer for gentle section fade-in
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal-section').forEach(sec => observer.observe(sec));
+
+      /* -------------------------------------------------------------------
+         4. AMBIENT FIREFLY & FLOATING LANTERN CANVAS
+         ------------------------------------------------------------------- */
+      const canvas = document.getElementById('starlight-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let floatingHearts = [];
+
+      function resizeCanvas() {
+        const container = document.getElementById('app-container');
+        canvas.width = container.offsetWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      // Create gentle warm fireflies/stars
+      for (let i = 0; i < 36; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.8 + 0.6,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: -Math.random() * 0.3 - 0.08,
+          alpha: Math.random() * 0.7 + 0.2,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+
+      function spawnWishLanterns() {
+        for (let i = 0; i < 18; i++) {
+          floatingHearts.push({
+            x: canvas.width * 0.5 + (Math.random() - 0.5) * 140,
+            y: canvas.height * 0.72 + Math.random() * 40,
+            vy: -Math.random() * 1.4 - 0.8,
+            vx: (Math.random() - 0.5) * 0.9,
+            size: Math.random() * 10 + 10,
+            alpha: 1,
+            char: i % 3 === 0 ? '✨' : (i % 2 === 0 ? '💛' : '🕯️')
+          });
+        }
+      }
+
+      function animateCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw warm fireflies
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.phase += 0.025;
+
+          if (p.y < -10) p.y = canvas.height + 10;
+          if (p.x < -10) p.x = canvas.width + 10;
+          if (p.x > canvas.width + 10) p.x = -10;
+
+          const currentAlpha = p.alpha * (0.6 + 0.4 * Math.sin(p.phase));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(243, 213, 155, ${currentAlpha})`;
+          ctx.fill();
+        });
+
+        // Draw rising birthday wish lanterns/hearts
+        for (let i = floatingHearts.length - 1; i >= 0; i--) {
+          const h = floatingHearts[i];
+          h.x += h.vx;
+          h.y += h.vy;
+          h.alpha -= 0.0055;
+
+          if (h.alpha <= 0) {
+            floatingHearts.splice(i, 1);
+            continue;
+          }
+
+          ctx.save();
+          ctx.globalAlpha = h.alpha;
+          ctx.font = `${h.size}px serif`;
+          ctx.fillText(h.char, h.x, h.y);
+          ctx.restore();
+        }
+
+        requestAnimationFrame(animateCanvas);
+      }
+      animateCanvas();
+
+      /* -------------------------------------------------------------------
+         5. INTERACTIVE QUIET BIRTHDAY WISH CANDLE
+         ------------------------------------------------------------------- */
+      const wishBtn = document.getElementById('wish-candle-btn');
+      const wishFeedback = document.getElementById('wish-feedback');
+      const candleAura = document.getElementById('candle-aura');
+      let wishCount = 0;
+
+      const gentleWishMessages = [
+        "Your wish is held safely in the stars. May this year bring you gentle peace and healing. 💛",
+        "Grandma’s love and Akira’s joy are with you always. Happy Birthday, sweetheart. ✨",
+        "Another wish sent up for your new chapter in London—you deserve every good thing. 🕯️"
+      ];
+
+      wishBtn.addEventListener('click', () => {
+        spawnWishLanterns();
+        if (audioCtx && isPlayingMusic) {
+          playSoftChimeNote(523.25);
+          setTimeout(() => playSoftChimeNote(659.25), 180);
+        }
+        candleAura.style.transform = 'scale(1.45)';
+        setTimeout(() => { candleAura.style.transform = 'scale(1)'; }, 600);
+
+        const msg = gentleWishMessages[wishCount % gentleWishMessages.length];
+        wishCount++;
+        wishFeedback.innerHTML = `<p class="text-xs text-[#f3d59b] leading-relaxed font-medium animate-pulse">${msg}</p>`;
+      });
+
+      /* -------------------------------------------------------------------
+         6. PERSONALIZE & INSTANT PHOTO PREVIEW MODAL
+         ------------------------------------------------------------------- */
+      const editorModal = document.getElementById('editor-modal');
+      const openEditorBtn = document.getElementById('open-editor-btn');
+      const closeEditorBtn = document.getElementById('close-editor-btn');
+      const saveEditorBtn = document.getElementById('save-editor-btn');
+      const inputHerName = document.getElementById('input-her-name');
+      const inputYourName = document.getElementById('input-your-name');
+      const inputLetterText = document.getElementById('input-letter-text');
+
+      openEditorBtn.addEventListener('click', () => {
+        inputLetterText.value = letterParagraphs.join('\n\n');
+        editorModal.classList.remove('hidden');
+        editorModal.classList.add('flex');
+      });
+
+      closeEditorBtn.addEventListener('click', () => {
+        editorModal.classList.add('hidden');
+        editorModal.classList.remove('flex');
+      });
+
+      // Handle instant local image file previews
+      document.querySelectorAll('.photo-picker').forEach(picker => {
+        picker.addEventListener('change', (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          const targetId = picker.getAttribute('data-target');
+          const imgEl = document.getElementById(targetId);
+          if (imgEl) {
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+              imgEl.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      });
+
+      saveEditorBtn.addEventListener('click', () => {
+        const herName = inputHerName.value.trim() || 'My Love';
+        const yourName = inputYourName.value.trim() || 'Forever Yours ♥';
+
+        document.getElementById('intro-her-name').textContent = herName;
+        document.getElementById('header-title').textContent = `For ${herName}`;
+        document.getElementById('letter-signature').textContent = yourName;
+
+        const updatedParas = inputLetterText.value
+          .split(/\n\s*\n/)
+          .map(p => p.trim())
+          .filter(Boolean);
+
+        if (updatedParas.length > 0) {
+          letterParagraphs = updatedParas;
+          renderFullLetter();
+        }
+
+        editorModal.classList.add('hidden');
+        editorModal.classList.remove('flex');
+      });
+    });
+  </script>
+</body>
+</html>
